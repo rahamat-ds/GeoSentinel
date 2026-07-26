@@ -1,0 +1,49 @@
+experiment_name: land_cover_resnet50_v1
+description: >
+  Baseline land-cover classification on Sentinel-2 tiles, ResNet-50 backbone,
+  reference run for the GeoSentinel-AI benchmarking suite.
+seed: 42
+
+dataset:
+  name: sentinel2_landcover_benchmark
+  version: "2024.03"
+  root: ${GEOSENTINEL_DATA_ROOT:-./datasets/satellite/sentinel2_landcover}
+  format: geotiff
+  checksum: "sha256:placeholder_replace_with_registry_checksum"
+  split: test
+
+model:
+  name: resnet50_landcover
+  architecture: resnet50
+  task_type: classification
+  num_classes: 10
+  pretrained: true
+  checkpoint_path: ./checkpoints/resnet50_landcover_v1.pt
+  hyperparameters:
+    learning_rate: 0.0003
+    batch_size: 32
+    optimizer: adamw
+
+explainability:
+  enabled: true
+  method: vanilla_gradient
+
+uncertainty:
+  enabled: true
+  method: mc_dropout
+  n_samples: 30
+
+benchmarking:
+  metrics: [accuracy, precision_macro, recall_macro, f1_macro]
+
+reporting:
+  formats: [markdown, latex]
+  output_dir: ./experiments
+  generate_figures: true
+
+tracking:
+  backend: mlflow
+  tracking_uri: ${MLFLOW_TRACKING_URI:-./mlruns}
+  experiment_group: land_cover_classification
+
+tags: [benchmark, sentinel2, resnet50, reference-run]
