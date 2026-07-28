@@ -21,7 +21,7 @@ def _enable_dropout_only(model: Any) -> None:
     eval mode, or single-sample statistics would corrupt running
     batch-norm estimates.
     """
-    import torch.nn as nn
+    from torch import nn
 
     model.eval()
     for module in model.modules():

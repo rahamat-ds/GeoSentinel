@@ -146,7 +146,7 @@ class ExperimentConfig(BaseModel):
     tags: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
-    def _check_task_class_consistency(self) -> "ExperimentConfig":
+    def _check_task_class_consistency(self) -> ExperimentConfig:
         if self.model.task_type is TaskType.CLASSIFICATION and self.model.num_classes < 2:
             raise ValueError("Classification tasks require num_classes >= 2")
         return self

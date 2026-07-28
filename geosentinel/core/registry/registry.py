@@ -8,7 +8,8 @@ has to make sense in ten years.
 """
 from __future__ import annotations
 
-from typing import Callable, Generic, TypeVar
+from collections.abc import Callable
+from typing import TypeVar
 
 T = TypeVar("T")
 
@@ -17,7 +18,7 @@ class RegistryError(KeyError):
     """Raised on duplicate registration or lookup of an unknown name."""
 
 
-class Registry(Generic[T]):
+class Registry([T]):
     """A name -> component registry for one kind of pluggable component.
 
     Example

@@ -13,7 +13,15 @@ app = typer.Typer(help="GeoSentinel-AI: Trustworthy Environmental Intelligence, 
 
 
 @app.command()
-def run(config: Path = typer.Option(..., "--config", "-c", help="Path to an experiment YAML")) -> None:
+def run(
+    config: Path = typer.Option(  # noqa: B008
+        ...,
+        "--config",
+        "-c",
+        help="Path to an experiment YAML",
+    ),
+) -> None:
+
     """Run an experiment end-to-end from a validated config file."""
     configure_logging()
     experiment_config = ConfigLoader.load(config)

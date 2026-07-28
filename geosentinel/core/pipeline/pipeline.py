@@ -51,7 +51,7 @@ class Pipeline:
             logger.info("stage_started", stage=stage.name)
             try:
                 context = stage.run(context)
-            except Exception as exc:  # noqa: BLE001 - re-raised with stage context below
+            except Exception as exc:
                 logger.error("stage_failed", stage=stage.name, error=str(exc))
                 recorder.finalize(context, status="failed")
                 raise PipelineStageError(stage.name, exc) from exc

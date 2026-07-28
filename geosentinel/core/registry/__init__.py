@@ -13,11 +13,11 @@ DATASET_REGISTRY: Registry = Registry("dataset")
 BENCHMARK_REGISTRY: Registry = Registry("benchmark")
 
 __all__ = [
+    "BENCHMARK_REGISTRY",
+    "DATASET_REGISTRY",
+    "EXPLAINER_REGISTRY",
+    "MODEL_REGISTRY",
+    "UNCERTAINTY_REGISTRY",
     "Registry",
     "RegistryError",
-    "MODEL_REGISTRY",
-    "EXPLAINER_REGISTRY",
-    "UNCERTAINTY_REGISTRY",
-    "DATASET_REGISTRY",
-    "BENCHMARK_REGISTRY",
 ]
