@@ -1052,6 +1052,12 @@ tracking = [
     { name = "mlflow" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-cov" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "captum", marker = "extra == 'explainability'", specifier = ">=0.7" },
@@ -1078,6 +1084,12 @@ requires-dist = [
     { name = "typer", specifier = ">=0.12" },
 ]
 provides-extras = ["torch", "geospatial", "tracking", "explainability", "dev", "all"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pytest", specifier = ">=9.1.1" },
+    { name = "pytest-cov", specifier = ">=7.1.0" },
+]
 
 [[package]]
 name = "gitdb"
